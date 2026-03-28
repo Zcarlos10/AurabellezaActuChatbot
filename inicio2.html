@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aura Belleza</title>
+<link rel="stylesheet" href="inicio2.css">
+</head>
+
+<body>
+
+<header>
+<nav class="nav-bar">
+<h1 class="logo">Aura Belleza</h1>
+<ul class="menu">
+<li><a href="inicio2.html">Inicio</a></li>
+<li><a href="Producto.html">Catalogo</a></li>
+</ul>
+</nav>
+</header>
+
+<main>
+
+<section class="hero">
+<div class="hero-text">
+<h2>Resalta tu Belleza con Elegancia</h2>
+<p>Encuentra productos exclusivos que te inspiran a ser tu mejor versión.</p>
+<a href="Producto.html" class="btn-gold">Ver Catalogo</a>
+</div>
+
+<div class="hero-images">
+<img src="img_pagina_web/cosme1.jpeg">
+<img src="img_pagina_web/cosme2.jpeg">
+<img src="img_pagina_web/cosme3.jpeg">
+<img src="img_pagina_web/cosme4.jpeg">
+</div>
+</section>
+
+<section class="chat-section">
+
+<h3>Asistente Virtual</h3>
+
+<div id="chatbot">
+
+<div class="chat-header">
+Chatbot Tienda
+</div>
+
+<div id="mensajes"></div>
+
+<div class="chat-input">
+<input type="text" id="input" placeholder="Escribe..." onkeypress="enter(event)">
+<button onclick="enviar()">Enviar</button>
+</div>
+
+</div>
+
+</section>
+
+<section class="contacto">
+<h3>Contáctanos</h3>
+<p><strong>Correo:</strong> sjaircrack@gmail.com</p>
+<p><strong>Teléfono:</strong> +51 905 858 500</p>
+<p><strong>Dirección:</strong> Av. Empresaria 123, Lima, Perú</p>
+</section>
+
+</main>
+
+<footer>
+<h3>Síguenos en redes</h3>
+<p>Instagram: aurabelleza</p>
+<p>&copy; 2025 Aura Belleza</p>
+</footer>
+
+<script>
+
+// 🔹 ENTER
+function enter(e) {
+    if (e.key === "Enter") enviar();
+}
+
+// 🔹 ENVIAR MENSAJE
+function enviar() {
+
+    let input = document.getElementById("input");
+    let texto = input.value;
+
+    if (texto.trim() === "") return;
+
+    agregar("Tú: " + texto, "usuario");
+
+    let respuesta = responder(texto);
+
+    setTimeout(() => {
+        agregar("Bot: " + respuesta, "bot");
+    }, 500);
+
+    input.value = "";
+}
+
+// 🔹 MOSTRAR MENSAJES
+function agregar(texto, tipo) {
+
+    let chat = document.getElementById("mensajes");
+
+    let clase = (tipo === "usuario") ? "msg-user" : "msg-bot";
+
+    chat.innerHTML += `<p class="${clase}">${texto}</p>`;
+
+    chat.scrollTop = chat.scrollHeight;
+}
+
+// 🔹 RESPUESTAS INTELIGENTES
+function responder(msg) {
+
+msg = msg.toLowerCase();
+
+if (contiene(msg, ["hola", "buenas", "hey", "que tal"])) {
+    return "¡Hola! Bienvenido a Aura Belleza 😊";
+}
+
+if (contiene(msg, [
+    "productos",
+    "que venden",
+    "que ofrecen",
+    "tienen maquillaje",
+    "que productos tienen",
+    "venden perfumes"
+])) {
+    return "Tenemos maquillaje, perfumes y productos de cuidado personal, puedes visualizarlo en nuestra opciones de catalogo en la parte superior derecha";
+}
+
+if (contiene(msg, [
+    "precio",
+    "cuanto cuesta",
+    "costos",
+    "es caro",
+    "cuanto vale"
+])) {
+    return "Nuestros precios son accesibles y contamos con promociones como un producto gratis por un compra mayor a 200 soles de un precio menor de 30 soles";
+}
+
+if (contiene(msg, [
+    "pago",
+    "como pagar",
+    "metodos de pago",
+    "aceptan yape",
+    "aceptan tarjeta"
+])) {
+    return "Aceptamos Yape, Plin y tarjetas, te pasamos nuestro numero de contacto para coordinar el pago(escribe la opcion -numero-)";
+}
+
+if (contiene(msg, [
+    "envio",
+    "envios",
+    "delivery",
+    "hacen envios",
+    "a donde envian"
+])) {
+    return "Realizamos envíos a todo el Perú ";
+}
+
+if (contiene(msg, [
+    "devolucion",
+    "cambio",
+    "puedo devolver",
+    "garantia"
+])) {
+    return "Aceptamos cambios dentro de los primeros 7 días 🔄";
+}
+
+if (contiene(msg, [
+    "numero"
+])) {
+    return "nuestro numero de empesa es 967484832, para cualquier consulta externa del chatbot";
+}
+
+if (contiene(msg, [
+    "gracias",
+    "muchas gracias",
+    "ok gracias"
+])) {
+    return "¡Gracias por visitarnos! 😊";
+}
+
+return "No entendí bien tu pregunta 🤔. Puedes consultar sobre productos, pagos o envíos.";
+}
+
+// 🔹 FUNCIÓN DE APOYO
+function contiene(texto, lista) {
+    return lista.some(palabra => texto.includes(palabra));
+}
+
+// 🔹 MENSAJE INICIAL
+window.onload = function() {
+    agregar("Bot: ¡Hola! 👋 Soy tu asistente virtual de Aura Belleza.", "bot");
+}
+
+</script>
+</body>
+</html>
